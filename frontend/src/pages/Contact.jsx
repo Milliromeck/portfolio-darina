@@ -198,11 +198,11 @@ const Contact = () => {
               <div className="social-links">
                 <h3>Connect</h3>
                 <div className="social-grid">
-                  <a href="https://github.com/darina-romanovskaya" target="_blank" rel="noopener noreferrer">
+                  <a href="https://github.com/Milliromeck" target="_blank" rel="noopener noreferrer">
                     GitHub
                   </a>
-                  <a href="https://linkedin.com/in/darina-romanovskaya" target="_blank" rel="noopener noreferrer">
-                    LinkedIn
+                  <a href="https://vk.com/erythromycinthut" target="_blank" rel="noopener noreferrer">
+                    VK
                   </a>
                 </div>
               </div>
