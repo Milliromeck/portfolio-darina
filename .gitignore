@@ -1,0 +1,70 @@
+# Депенденси
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Окружение
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Сборка
+dist/
+build/
+.out/
+.next/
+.cache/
+
+# Логи
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Операционные системы
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Docker
+*.pid
+docker-compose.override.yml
+
+# Тестовые данные
+test-data/
+tmp/
+temp/
+
+# Фронтенд специфичные
+coverage/
+*.css.map
+*.js.map
+*.tsbuildinfo
+
+# Бэкенд специфичные (PHP)
+vendor/
+composer.lock
+*.session
+*.cache
+
+# БД
+*.sqlite
+*.sqlite3
+dump.sql
+
+# Документация
+docs/_build/

@@ -1,0 +1,25 @@
+.pixel-heart {
+  position: fixed;
+  top: -100px;
+  display: grid;
+  grid-template-columns: repeat(7, 8px);
+  grid-template-rows: repeat(7, 8px);
+  gap: 1px;
+  z-index: 9999;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+.pixel {
+  width: 8px;
+  height: 8px;
+  background: #ff00ff;
+  box-shadow: 0 0 3px #ff00ff;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(calc(100vh + 100px));
+    opacity: 0;
+  }
+}
