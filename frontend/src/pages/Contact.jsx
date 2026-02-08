@@ -23,7 +23,8 @@ const Contact = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-//отправка на бекенд
+
+  // ОТПРАВКА НА FORMSPREE
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -35,10 +36,11 @@ const Contact = () => {
     setStatus('sending');
     
     try {
-      const response = await fetch('http://localhost:8080/api/contact.php', {
+      const response = await fetch('https://formspree.io/f/xvzbovna', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
           name: formData.name,
@@ -49,15 +51,16 @@ const Contact = () => {
       
       const result = await response.json();
       
-      if (response.ok && result.status === 'success') {
+      // Formspree возвращает success при статусе 200-299
+      if (response.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', message: '' });
         setErrors({});
       } else {
-        throw new Error(result.message || 'Failed to send message');
+        throw new Error(result.error || 'Failed to send message');
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Formspree Error:', error);
       setStatus('error');
     }
     
@@ -102,7 +105,7 @@ const Contact = () => {
                 <h2>Send a Message</h2>
                 <p>Fill out the form below and I'll get back to you soon</p>
                 
-                <form onSubmit={handleSubmit} className="contact-form">
+                <form onSubmit={handleSubmit} className="contact-form" noValidate>
                   <div className="form-group">
                     <input
                       type="text"
@@ -111,6 +114,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       className={errors.name ? 'error' : ''}
+                      required
                     />
                     {errors.name && <span className="error-text">{errors.name}</span>}
                   </div>
@@ -123,6 +127,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       className={errors.email ? 'error' : ''}
+                      required
                     />
                     {errors.email && <span className="error-text">{errors.email}</span>}
                   </div>
@@ -135,6 +140,7 @@ const Contact = () => {
                       onChange={handleChange}
                       rows="5"
                       className={errors.message ? 'error' : ''}
+                      required
                     />
                     {errors.message && <span className="error-text">{errors.message}</span>}
                   </div>
@@ -149,25 +155,24 @@ const Contact = () => {
                   
                   {status === 'success' && (
                     <div className="success-message">
-                       Message sent successfully! I'll contact you soon.
+                      ✓ Message sent successfully! I'll contact you soon.
                     </div>
                   )}
                   
                   {status === 'error' && (
                     <div className="error-message">
-                       Failed to send message. Please try again later.
+                      ✗ Failed to send message. Please try again later.
                     </div>
                   )}
                   
                   {status === 'validation-error' && (
                     <div className="error-message">
-                       Please fix the errors above.
+                      ⚠ Please fix the errors above.
                     </div>
                   )}
                 </form>
               </div>
             </div>
-            
             
             <div className="contact-info-section">
               <h2>Get in Touch</h2>
@@ -180,7 +185,7 @@ const Contact = () => {
                   </div>
                 </div>
                 <div className="info-item">
-                  <div className="icon">�</div>
+                  <div className="icon">📍</div>
                   <div>
                     <h3>Location</h3>
                     <p>Available for remote work worldwide</p>

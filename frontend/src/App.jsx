@@ -9,7 +9,7 @@ import './styles/global.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/portfolio-darina">
       <Hearts />
       
       <Header />
@@ -23,4 +23,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;  
